@@ -141,6 +141,9 @@ app.get('/selectRaw', async (req, res) => {
 	}
 });
 
+/**
+ * Retrieve information related to the model
+ */
 app.get('/related', async (req, res) => {
 	const { Post } = require('./models');
 	try {
@@ -171,6 +174,9 @@ app.get('/related', async (req, res) => {
 	}
 });
 
+/**
+ * Insert an entry
+ */
 app.get('/insert', async (req, res) => {
 	const { User } = require('./models/User');
 	try {
@@ -199,6 +205,9 @@ app.get('/insert', async (req, res) => {
 	}
 });
 
+/**
+ * Update an entry
+ */
 app.get('/update', async (req, res) => {
 	const { User } = require('./models');
 	try {
@@ -229,6 +238,9 @@ app.get('/update', async (req, res) => {
 	}
 });
 
+/**
+ * Delete an entry
+ */
 app.get('/delete', async (req, res) => {
 	const { User } = require('./models');
 	try {
@@ -262,27 +274,6 @@ app.get('/delete', async (req, res) => {
 			},
 		});
 	}
-});
-
-app.get('/', async (req, res) => {
-	const { User } = require('./models/User');
-
-	// Delete all persons from the db.
-	await User.query().delete();
-
-	// Insert one row to the database.
-	await User.query().insert({
-		firstName: 'Jennifer',
-		lastName: 'Aniston',
-	});
-
-	// Read all rows from the db.
-	const people = await User.query();
-
-	console.log(people);
-	res.json({
-		status: 'hello',
-	});
 });
 
 const PORT = process.env.PORT;
